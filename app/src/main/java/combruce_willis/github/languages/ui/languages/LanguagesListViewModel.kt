@@ -11,7 +11,6 @@ class LanguagesListViewModel(
     private val repository: ProgrammingLanguageRepository =
         ProgrammingLanguageRepository.getInstance()) :
     ViewModel() {
-    // TODO: Implement the ViewModel
 
     val languages = repository.getLanguages()
 }
