@@ -32,7 +32,7 @@ class LanguagesListFragment : androidx.fragment.app.Fragment() {
         //languages_list.layoutManager = LinearLayoutManager(languages_list.context)
         val adapter = LanguagesAdapter { id ->
             activity?.supportFragmentManager?.transaction {
-                setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                //setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 replace(R.id.container,
                     LanguageDetailFragment.newInstance(id)
                 )

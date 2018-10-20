@@ -42,7 +42,7 @@ class LanguageDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel?.let {
-            activity?.title = it.language.name
+            // activity?.title = it.language.name
             description.text = it.language.description
         }
     }
