@@ -2,7 +2,7 @@ package combruce_willis.github.languages
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import combruce_willis.github.languages.ui.languages.LanguagesListFragment
+import combruce_willis.github.languages.ui.languages.list.LanguagesListFragment
 
 class MainActivity : AppCompatActivity() {
 
