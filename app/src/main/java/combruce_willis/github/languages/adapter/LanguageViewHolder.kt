@@ -9,9 +9,11 @@ class LanguageViewHolder(itemView: View, private val navigate: (Int) -> Unit) :
     RecyclerView.ViewHolder(itemView) {
 
     private val name = itemView.language_name
+    private val fileExtension = itemView.file_extension
 
     fun bindLanguage(languageBasic: ProgrammingLanguageBasic) {
         name.text = languageBasic.name
+        fileExtension.text = languageBasic.fileExtension
         itemView.setOnClickListener { navigate(languageBasic.id) }
     }
 }

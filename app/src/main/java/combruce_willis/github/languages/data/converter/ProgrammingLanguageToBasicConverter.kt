@@ -7,4 +7,4 @@ import combruce_willis.github.languages.data.entity.ProgrammingLanguageBasic
 // https://developer.android.com/training/data-storage/room/accessing-data#query-subset-cols
 // TODO: replace with Room
 fun ProgrammingLanguage.convertToBasicModel() =
-    ProgrammingLanguageBasic(this.id, this.name)
+    ProgrammingLanguageBasic(this.id, this.name, this.fileExtension)
