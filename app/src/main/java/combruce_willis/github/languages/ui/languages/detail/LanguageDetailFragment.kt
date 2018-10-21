@@ -3,10 +3,8 @@ package combruce_willis.github.languages.ui.languages.detail
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,6 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import combruce_willis.github.languages.R
 import combruce_willis.github.languages.ui.common.NavigationFragment
+import io.github.kbiakov.codeview.adapters.Options
 import kotlinx.android.synthetic.main.fragment_language_detail.*
 import java.util.concurrent.ThreadLocalRandom
 
@@ -34,11 +33,11 @@ class LanguageDetailFragment : NavigationFragment() {
         arguments?.let {
             languageId = it.getInt(ARG_LANGUAGE)
         }
-        subscribeUI()
         return inflater.inflate(R.layout.fragment_language_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        subscribeUI()
         detail_toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         detail_toolbar.setNavigationOnClickListener { navigator?.navigateBack() }
         super.onViewCreated(view, savedInstanceState)
@@ -50,6 +49,7 @@ class LanguageDetailFragment : NavigationFragment() {
             .get(LanguageDetailViewModel::class.java)
         viewModel.language.observe(viewLifecycleOwner, Observer { language ->
             toolbar_layout.title = language.name
+            //toolbar_layout.setExpandedTitleColor(resources.getColor(R.color.colorAccent))
             description.text = language.description
             releaseYear.text = getString(R.string.release_year, language.releaseYear)
             website.text = getString(R.string.website, language.websiteUrl)
@@ -63,6 +63,13 @@ class LanguageDetailFragment : NavigationFragment() {
                         .placeholder(ColorDrawable(ThreadLocalRandom.current().nextInt()))
                 )
                 .into(detail_image)
+
+            code_view.setOptions(
+                Options.get(context!!)
+                    .withLanguage(language.fileExtension)
+                    .withCode(language.helloWorld)
+                    .disableHighlightAnimation()
+            )
         })
     }
 

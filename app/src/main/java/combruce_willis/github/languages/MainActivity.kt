@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.transaction
 import combruce_willis.github.languages.ui.Navigator
 import combruce_willis.github.languages.ui.languages.list.LanguagesListFragment
+import io.github.kbiakov.codeview.adapters.Options
+import io.github.kbiakov.codeview.classifier.CodeProcessor
+import kotlinx.android.synthetic.main.fragment_language_detail.*
 
 class MainActivity : AppCompatActivity(), Navigator {
     override fun onCreate(savedInstanceState: Bundle?) {

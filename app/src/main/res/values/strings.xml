@@ -4,4 +4,6 @@
     <string name="language_logo">language_logo</string>
     <string name="release_year">Release year: %1$d</string>
     <string name="website">Website: %1$s</string>
+    <string name="file_extension">.%1$s</string>
+    <string name="hello_world">Hello world:</string>
 </resources>

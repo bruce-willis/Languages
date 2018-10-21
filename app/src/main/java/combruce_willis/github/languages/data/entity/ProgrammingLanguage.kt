@@ -8,5 +8,6 @@ data class ProgrammingLanguage(
     val releaseYear: Int,
     val websiteUrl: String,
     val fileExtension: String,
+    val helloWorld: String,
     val imageUrl: String
 )
