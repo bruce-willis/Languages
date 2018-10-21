@@ -20,7 +20,6 @@ class ProgrammingLanguageRepository private constructor() {
     }
 
     fun getLanguages() = fromCallable {
-        // Thread.sleep(30000)
         languages.map { it.convertToBasicModel() }
     }
 

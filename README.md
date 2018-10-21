@@ -7,6 +7,7 @@ Best app with list of programming languages
 
 * [Installation](#installation)
 * [Used libraries](#used-libraries)
+* [TODO](#TODO)
 * [Screenshots & gifs](#screenshots-and-gifs)
 
 
@@ -15,7 +16,7 @@ Best app with list of programming languages
 * build manually:
 ```
 git clone https://github.com/bruce-willis/Languages.git
-cd xkcd
+cd Languages
 ./gradlew build
 ```
 
@@ -23,8 +24,15 @@ cd xkcd
 variable is pointing at the SDK or add a `local.properties` file in the root project with a `sdk.dir=...` line.
 
 ### Used libraries  
+* [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
+* [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+* [Android ktx](https://developer.android.com/kotlin/ktx)
 * [Glide](https://github.com/bumptech/glide) for working with images.
 * [CodeView-android](https://github.com/kbiakov/CodeView-android) display code with syntax highlighting
+
+### TODO
+* [ ] proper DI system
+* [ ] store info in database
 
 ### Screenshots and gifs
 <details>
@@ -56,3 +64,13 @@ variable is pointing at the SDK or add a `local.properties` file in the root pro
 
 </div>
 </details>
+
+<details>
+<summary>collapsing toolbar</summary>
+    
+<div align="center">
+
+<img max-height="500px" max-width="500px" src="https://thumbs.gfycat.com/UnitedLeafyAustralianfurseal-size_restricted.gif">
+
+</div>
+ </details>
