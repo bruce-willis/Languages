@@ -1,7 +1,7 @@
 package combruce_willis.github.languages.data.entity
 
 
-data class ProgrammingLanguage (
+data class ProgrammingLanguage(
     val id: Int,
     val name: String,
     val description: String,

@@ -9,7 +9,8 @@ import combruce_willis.github.languages.data.repository.ProgrammingLanguageRepos
 // TODO: replace with proper DI
 class LanguagesListViewModel(
     repository: ProgrammingLanguageRepository =
-        ProgrammingLanguageRepository.getInstance()) :
+        ProgrammingLanguageRepository.getInstance()
+) :
     ViewModel() {
 
     val languages = repository.getLanguages()

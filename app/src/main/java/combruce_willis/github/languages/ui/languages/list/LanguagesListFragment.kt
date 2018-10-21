@@ -4,20 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.transaction
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import combruce_willis.github.languages.R
 import combruce_willis.github.languages.adapter.LanguagesAdapter
+import combruce_willis.github.languages.ui.common.NavigationFragment
 import combruce_willis.github.languages.ui.languages.detail.LanguageDetailFragment
 import kotlinx.android.synthetic.main.languages_list_fragment.*
 
-class LanguagesListFragment : androidx.fragment.app.Fragment() {
-
-    companion object {
-        fun newInstance() = LanguagesListFragment()
-    }
-
+class LanguagesListFragment : NavigationFragment() {
     private lateinit var viewModel: LanguagesListViewModel
 
     override fun onCreateView(
@@ -29,23 +24,20 @@ class LanguagesListFragment : androidx.fragment.app.Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //languages_list.layoutManager = LinearLayoutManager(languages_list.context)
+        viewModel = ViewModelProviders.of(this).get(LanguagesListViewModel::class.java)
+
         val adapter = LanguagesAdapter { id ->
-            activity?.supportFragmentManager?.transaction {
-                //setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                replace(R.id.container,
-                    LanguageDetailFragment.newInstance(id)
-                )
-                addToBackStack(null)
-            }
+            navigator?.navigateTo({ LanguageDetailFragment.newInstance(id) }, addToBackStack = true)
         }
         languages_list.adapter = adapter
+        subscribeUi(adapter)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LanguagesListViewModel::class.java)
-        (languages_list.adapter as LanguagesAdapter).submitList(viewModel.languages)
+    private fun subscribeUi(adapter: LanguagesAdapter) {
+        viewModel.languages.observe(viewLifecycleOwner, Observer { languages ->
+            if (languages != null)
+                adapter.submitList(languages)
+        })
     }
 
 }

@@ -2,7 +2,6 @@ package combruce_willis.github.languages.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import combruce_willis.github.languages.data.entity.ProgrammingLanguage
 import combruce_willis.github.languages.data.entity.ProgrammingLanguageBasic
 import kotlinx.android.synthetic.main.language_list_element.view.*
 

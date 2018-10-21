@@ -1,86 +1,74 @@
 package combruce_willis.github.languages.ui.languages.detail
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import combruce_willis.github.languages.R
+import combruce_willis.github.languages.ui.common.NavigationFragment
 import kotlinx.android.synthetic.main.fragment_language_detail.*
+import kotlinx.android.synthetic.main.fragment_language_detail.view.*
+import java.util.concurrent.ThreadLocalRandom
 
 
 private const val ARG_LANGUAGE = "language"
 
-class LanguageDetailFragment : Fragment() {
-    private var languageId: Int? = null
-    private var viewModel: LanguageDetailViewModel? = null
-    //private var listener: OnFragmentInteractionListener? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            languageId = it.getInt(ARG_LANGUAGE)
-        }
-
-        languageId?.let {
-            val factory = LanguageDetailViewModelFactory(languageId = it)
-            viewModel = ViewModelProviders.of(this, factory)
-                .get(LanguageDetailViewModel::class.java)
-        }
-    }
+class LanguageDetailFragment : NavigationFragment() {
+    private var languageId: Int = 0
+    private lateinit var viewModel: LanguageDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        arguments?.let {
+            languageId = it.getInt(ARG_LANGUAGE)
+        }
+
+//        (requireActivity() as AppCompatActivity).apply {
+//            setSupportActionBar(detail_toolbar)
+//            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        }
+
+        subscribeUI()
+        //toolbar_layout.tool
+        //(activity as AppCompatActivity).setSupportActionBar(detail_toolbar)
+        //(activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         return inflater.inflate(R.layout.fragment_language_detail, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel?.let {
-            // activity?.title = it.language.name
-            description.text = it.language.description
-        }
+    private fun subscribeUI() {
+        val factory = LanguageDetailViewModelFactory(languageId = languageId)
+        viewModel = ViewModelProviders.of(this, factory)
+            .get(LanguageDetailViewModel::class.java)
+        viewModel.language.observe(viewLifecycleOwner, Observer { language ->
+            toolbar_layout.title = language.name
+            description.text = language.description
+            releaseYear.text = language.releaseYear.toString()
+            Glide.with(this)
+                .load(language.imageUrl)
+                .apply(
+                    RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .dontTransform()
+                        .format(DecodeFormat.PREFER_ARGB_8888)
+                        .placeholder(ColorDrawable(ThreadLocalRandom.current().nextInt()))
+                )
+                .into(detail_image)
+        })
     }
 
-    //    // TODO: Rename method, update argument and hook method into UI event
-//    fun onButtonPressed(uri: Uri) {
-//        listener?.onFragmentInteraction(uri)
-//    }
-//
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        if (context is OnFragmentInteractionListener) {
-//            listener = context
-//        } else {
-//            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-//        }
-//    }
-//
-//    override fun onDetach() {
-//        super.onDetach()
-//        listener = null
-//    }
-//
-//    /**
-//     * This interface must be implemented by activities that contain this
-//     * fragment to allow an interaction in this fragment to be communicated
-//     * to the activity and potentially other fragments contained in that
-//     * activity.
-//     *
-//     *
-//     * See the Android Training lesson [Communicating with Other Fragments]
-//     * (http://developer.android.com/training/basics/fragments/communicating.html)
-//     * for more information.
-//     */
-//    interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        fun onFragmentInteraction(uri: Uri)
-//    }
 
     companion object {
         fun newInstance(languageId: Int) =
