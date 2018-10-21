@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -40,6 +41,8 @@ class LanguageDetailFragment : NavigationFragment() {
         subscribeUI()
         detail_toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         detail_toolbar.setNavigationOnClickListener { navigator?.navigateBack() }
+        toolbar_layout.setCollapsedTitleTextColor(ContextCompat.getColor(context!!, R.color.colorTitle))
+        toolbar_layout.setExpandedTitleColor(ContextCompat.getColor(context!!, R.color.colorTitle))
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -49,7 +52,6 @@ class LanguageDetailFragment : NavigationFragment() {
             .get(LanguageDetailViewModel::class.java)
         viewModel.language.observe(viewLifecycleOwner, Observer { language ->
             toolbar_layout.title = language.name
-            //toolbar_layout.setExpandedTitleColor(resources.getColor(R.color.colorAccent))
             description.text = language.description
             releaseYear.text = getString(R.string.release_year, language.releaseYear)
             website.text = getString(R.string.website, language.websiteUrl)

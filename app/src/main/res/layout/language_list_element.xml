@@ -35,7 +35,7 @@
                   android:layout_weight="1"
                   android:layout_gravity="end"
                   android:textAlignment="textEnd"
-                  tools:text=".kt"/>
+                  tools:text=".kt" android:fontFamily="cursive"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
