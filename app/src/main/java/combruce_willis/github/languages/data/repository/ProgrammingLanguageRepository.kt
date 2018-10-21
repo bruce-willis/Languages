@@ -1,7 +1,8 @@
 package combruce_willis.github.languages.data.repository
 
-import combruce_willis.github.languages.data.entity.ProgrammingLanguage
+import combruce_willis.github.languages.data.converter.convertToBasicModel
 import combruce_willis.github.languages.data.storage.languages
+import combruce_willis.github.languages.utils.fromCallable
 
 class ProgrammingLanguageRepository private constructor() {
 
@@ -18,12 +19,11 @@ class ProgrammingLanguageRepository private constructor() {
             }
     }
 
-
-    fun getLanguages() : List<ProgrammingLanguage> {
-        //Thread.sleep(20000)
-        return languages
+    fun getLanguages() = fromCallable {
+        // Thread.sleep(30000)
+        languages.map { it.convertToBasicModel() }
     }
 
-    fun getLanguage(id: Int) = languages[id]
+    fun getLanguage(id: Int) = fromCallable { languages.find { it.id == id }!! }
 
 }

@@ -1,11 +1,12 @@
 package combruce_willis.github.languages.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import combruce_willis.github.languages.data.entity.ProgrammingLanguage
+import combruce_willis.github.languages.data.entity.ProgrammingLanguageBasic
 
-class LanguageDiffCallback : DiffUtil.ItemCallback<ProgrammingLanguage>() {
-    override fun areItemsTheSame(oldItem: ProgrammingLanguage, newItem: ProgrammingLanguage) = oldItem.name == newItem.name
+class LanguageDiffCallback : DiffUtil.ItemCallback<ProgrammingLanguageBasic>() {
+    override fun areItemsTheSame(oldItem: ProgrammingLanguageBasic, newItem: ProgrammingLanguageBasic) =
+        oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: ProgrammingLanguage, newItem: ProgrammingLanguage) = oldItem == newItem
-
+    override fun areContentsTheSame(oldItem: ProgrammingLanguageBasic, newItem: ProgrammingLanguageBasic) =
+        oldItem == newItem
 }

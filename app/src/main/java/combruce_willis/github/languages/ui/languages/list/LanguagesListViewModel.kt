@@ -1,4 +1,4 @@
-package combruce_willis.github.languages.ui.languages
+package combruce_willis.github.languages.ui.languages.list
 
 import androidx.lifecycle.ViewModel
 import combruce_willis.github.languages.data.repository.ProgrammingLanguageRepository
@@ -8,8 +8,9 @@ import combruce_willis.github.languages.data.repository.ProgrammingLanguageRepos
 // https://blog.jetbrains.com/dotnet/2018/07/31/dependency-injection-doesnt-strictly-require-frameworks-code-smells-series/#more-19339
 // TODO: replace with proper DI
 class LanguagesListViewModel(
-    private val repository: ProgrammingLanguageRepository =
-        ProgrammingLanguageRepository.getInstance()) :
+    repository: ProgrammingLanguageRepository =
+        ProgrammingLanguageRepository.getInstance()
+) :
     ViewModel() {
 
     val languages = repository.getLanguages()
