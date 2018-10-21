@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity(), Navigator {
         transactionName: String?
     ) {
         supportFragmentManager.transaction {
-//            if (transaction != null)
-//                setTransition(transaction)
+            if (transaction != null)
+                setTransition(transaction)
             replace(R.id.container, fragmentInstance.invoke())
             if (addToBackStack)
                 addToBackStack(transactionName)

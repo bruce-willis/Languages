@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentTransaction
 interface Navigator {
     fun navigateTo(
         fragmentInstance: () -> Fragment,
-        transaction: Int? = FragmentTransaction.TRANSIT_FRAGMENT_OPEN,
+        transaction: Int? = FragmentTransaction.TRANSIT_EXIT_MASK,
         addToBackStack: Boolean = false,
         transactionName: String? = null
     )

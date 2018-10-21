@@ -6,5 +6,6 @@ data class ProgrammingLanguage(
     val name: String,
     val description: String,
     val releaseYear: Int,
+    val websiteUrl: String,
     val imageUrl: String
 )
