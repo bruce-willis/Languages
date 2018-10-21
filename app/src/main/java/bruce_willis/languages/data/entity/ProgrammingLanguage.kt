@@ -1,6 +1,5 @@
 package bruce_willis.languages.data.entity
 
-
 data class ProgrammingLanguage(
     val id: Int,
     val name: String,

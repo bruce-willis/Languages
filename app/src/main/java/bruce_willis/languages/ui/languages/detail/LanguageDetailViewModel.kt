@@ -10,5 +10,4 @@ class LanguageDetailViewModel(
     ViewModel() {
 
     val language = repository.getLanguage(languageId)
-
 }

@@ -19,7 +19,6 @@ import io.github.kbiakov.codeview.adapters.Options
 import kotlinx.android.synthetic.main.fragment_language_detail.*
 import java.util.concurrent.ThreadLocalRandom
 
-
 private const val ARG_LANGUAGE = "language"
 
 class LanguageDetailFragment : NavigationFragment() {
@@ -74,7 +73,6 @@ class LanguageDetailFragment : NavigationFragment() {
             )
         })
     }
-
 
     companion object {
         fun newInstance(languageId: Int) =

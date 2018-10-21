@@ -33,5 +33,4 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     override fun navigateBack() = onBackPressed()
-
 }

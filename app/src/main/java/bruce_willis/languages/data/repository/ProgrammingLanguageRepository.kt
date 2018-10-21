@@ -25,5 +25,4 @@ class ProgrammingLanguageRepository private constructor() {
     }
 
     fun getLanguage(id: Int) = fromCallable { languages.find { it.id == id }!! }
-
 }
